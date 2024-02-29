@@ -14,6 +14,7 @@ const App = () => {
 			<Route path="/" element={<Navigation />}>
 				<Route index element={<Home />} />
 				<Route path="shop" element={<Shop />} />
+				{/* Its breaking right here when I call SignIn component, investigate there */}
 				<Route path="sign-in" element={<SignIn />} />
 			</Route>
 		</Routes>
