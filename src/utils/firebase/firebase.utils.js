@@ -26,4 +26,4 @@ provider.setCustomParameters({ prompt: 'select_account' })
 
 export const auth = getAuth()
 
-export const signInWithGooglePopup = signInWithRedirect(auth, provider)
+export const signInWithGooglePopup = signInWithPopup(auth, provider)
