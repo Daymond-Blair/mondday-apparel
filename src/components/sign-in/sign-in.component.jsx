@@ -1,4 +1,3 @@
-import { signInWithRedirect } from 'firebase/auth'
 import { signInWithGooglePopup } from '../../utils/firebase/firebase.utils'
 
 const SignIn = () => {
@@ -6,15 +5,20 @@ const SignIn = () => {
 		try {
 			const response = await signInWithGooglePopup()
 			console.log(response)
-		} catch (err) {
-			console.log('there was an error')
+			console.log('2')
+		} catch (error) {
+			console.error(error)
 		}
-	}
 
+		// const response = signInWithGooglePopup()
+		// console.log(response)
+		// console.log('2')
+	}
+	console.log('1')
 	return (
 		<div>
 			<h1>Sign In</h1>
-			<button onClick={logGoogleUser}>Sign in with Google Redirect</button>
+			<button onClick={logGoogleUser}>Sign in with Google Popup</button>
 		</div>
 	)
 }
