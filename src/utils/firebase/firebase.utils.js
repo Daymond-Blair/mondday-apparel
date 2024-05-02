@@ -23,13 +23,34 @@ const provider = new GoogleAuthProvider()
 // set parameters for auth provider
 provider.setCustomParameters({ prompt: 'select_account' })
 
-export const auth = getAuth(firebaseApp)
+export const auth = getAuth()
 
 export const signInWithGooglePopup = () => signInWithPopup(auth, provider)
 
 // instantiate the database
 export const db = getFirestore()
 
+// user account creation
 const createUserDocumentFromAuth = async (userAuth) => {
 	const userDocRef = doc(db, 'users', userAuth.uid)
+
+	const userSnapshot = await getDoc(userDocRef)
+
+	// if user data does not exist
+	if (!userSnapshot.exists()) {
+		// create and set document with data from userAuth into collection
+		const { displayName, email } = userAuth
+		const createdAt = new Date()
+
+		// this is for async code
+		try {
+			await setDoc(userDocRef, { displayName, email, createdAt })
+		} catch (error) {
+			console.log('Error creating the user', error.message)
+		}
+	}
+
+	// if user data exists
+	// return user reference
+	return userDocRef
 }
