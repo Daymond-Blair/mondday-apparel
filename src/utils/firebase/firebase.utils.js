@@ -1,6 +1,11 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'firebase/app'
-import { getAuth, signInWithPopup, GoogleAuthProvider } from 'firebase/auth'
+import {
+	getAuth,
+	signInWithPopup,
+	GoogleAuthProvider,
+	createUserWithEmailAndPassword,
+} from 'firebase/auth'
 
 import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore'
 
@@ -17,21 +22,24 @@ const firebaseConfig = {
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig)
 
-// create provider
-const provider = new GoogleAuthProvider()
+// create provider (google, github, facebook, etc...)
+const googleProvider = new GoogleAuthProvider()
 
 // set parameters for auth provider
-provider.setCustomParameters({ prompt: 'select_account' })
+googleProvider.setCustomParameters({ prompt: 'select_account' })
 
 export const auth = getAuth()
 
-export const signInWithGooglePopup = () => signInWithPopup(auth, provider)
+export const signInWithGooglePopup = () => signInWithPopup(auth, googleProvider)
 
 // instantiate the database
 export const db = getFirestore()
 
 // user account creation
-const createUserDocumentFromAuth = async (userAuth) => {
+export const createUserDocumentFromAuth = async (userAuth) => {
+	// if we don't get an argument passed in, don't run the function
+	if (!userAuth) return
+
 	const userDocRef = doc(db, 'users', userAuth.uid)
 
 	const userSnapshot = await getDoc(userDocRef)
@@ -53,4 +61,11 @@ const createUserDocumentFromAuth = async (userAuth) => {
 	// if user data exists
 	// return user reference
 	return userDocRef
+}
+
+export const createAuthUserWithEmailAndPassword = async (email, password) => {
+	// if we don't get an argument passed in, don't run the function
+	if (!email || !password) return
+
+	return await createUserWithEmailAndPassword(auth, email, password)
 }
