@@ -36,12 +36,16 @@ export const signInWithGooglePopup = () => signInWithPopup(auth, googleProvider)
 export const db = getFirestore()
 
 // user account creation
-export const createUserDocumentFromAuth = async (userAuth) => {
+export const createUserDocumentFromAuth = async (
+	userAuth,
+	additionalInformation = {},
+) => {
 	// if we don't get an argument passed in, don't run the function
 	if (!userAuth) return
 
 	const userDocRef = doc(db, 'users', userAuth.uid)
 
+	// capture user data and credentials
 	const userSnapshot = await getDoc(userDocRef)
 
 	// if user data does not exist
@@ -50,9 +54,14 @@ export const createUserDocumentFromAuth = async (userAuth) => {
 		const { displayName, email } = userAuth
 		const createdAt = new Date()
 
-		// this is for async code
+		// try-catch is used for async code
 		try {
-			await setDoc(userDocRef, { displayName, email, createdAt })
+			await setDoc(userDocRef, {
+				displayName,
+				email,
+				createdAt,
+				...additionalInformation,
+			})
 		} catch (error) {
 			console.log('Error creating the user', error.message)
 		}
