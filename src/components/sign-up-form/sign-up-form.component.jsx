@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { FormInput } from '../form-input/form-input.component.jsx'
+import FormInput from '../form-input/form-input.component'
 
 import {
 	createAuthUserWithEmailAndPassword,

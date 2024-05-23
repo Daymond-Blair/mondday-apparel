@@ -2,7 +2,7 @@
 const FormInput = ({ label, ...otherProps }) => {
 	return (
 		<div>
-			<label htmlFor="">Display Name</label>
+			<label>{label}</label>
 			<input {...otherProps} />
 		</div>
 	)
