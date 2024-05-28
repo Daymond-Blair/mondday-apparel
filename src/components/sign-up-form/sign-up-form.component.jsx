@@ -5,7 +5,8 @@ import {
 	createAuthUserWithEmailAndPassword,
 	createUserDocumentFromAuth,
 } from '../../utils/firebase/firebase.utils'
-
+import Button from '../button/button.component'
+import './sign-up-form.styles.scss'
 // new pattern from useState, create object to track multiple form fields, due to name and value overlap create shorthand method of storing and setting the object, this form field can be used to authenticate user/password
 
 // object with form fields, display and email are stored to be used for Auth in utils, password and confirm password will not be stored due to security
@@ -68,8 +69,9 @@ const SignUpForm = () => {
 
 	// create form to get data, once submitted, set formFields into object for storage
 	return (
-		<div>
-			<h1>Sign up with your email and password</h1>
+		<div className="sign-up-container">
+			<h2>Don't have an account?</h2>
+			<span>Sign up with your email and password</span>
 			<form onSubmit={handleSubmit}>
 				{/* This is another way to structure input attributes, I can't get it to work without throwing an error - possibly investigate but leaning towards just using spread operator */}
 				{/* <FormInput
@@ -118,7 +120,10 @@ const SignUpForm = () => {
 					name="confirmPassword"
 					value={confirmPassword}
 				/>
-				<button type="submit">Sign Up</button>
+				<Button buttonType={''} type="submit">
+					Sign Up
+				</Button>
+				{/* <button type="submit">Sign Up</button> */}
 			</form>
 		</div>
 	)
