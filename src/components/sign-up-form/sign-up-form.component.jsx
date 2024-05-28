@@ -71,6 +71,18 @@ const SignUpForm = () => {
 		<div>
 			<h1>Sign up with your email and password</h1>
 			<form onSubmit={handleSubmit}>
+				{/* This is another way to structure input attributes, I can't get it to work without throwing an error - possibly investigate but leaning towards just using spread operator */}
+				{/* <FormInput
+					label="Display Name"
+					inputOptions={{
+						type: 'text',
+						required: true,
+						onChange: handleChange,
+						name: 'displayName',
+						value: displayName,
+					}}
+				/> */}
+
 				<FormInput
 					label="Display Name"
 					type="text"
