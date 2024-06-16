@@ -6,7 +6,7 @@ import {
 	createUserDocumentFromAuth,
 } from '../../utils/firebase/firebase.utils'
 import Button from '../button/button.component'
-import './sign-up-form.styles.scss'
+// import './sign-up-form.styles.scss'
 // new pattern from useState, create object to track multiple form fields, due to name and value overlap create shorthand method of storing and setting the object, this form field can be used to authenticate user/password
 
 // object with form fields, display and email are stored to be used for Auth in utils, password and confirm password will not be stored due to security

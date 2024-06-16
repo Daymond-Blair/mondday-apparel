@@ -4,6 +4,7 @@ import FormInput from '../form-input/form-input.component'
 import {
 	createAuthUserWithEmailAndPassword,
 	createUserDocumentFromAuth,
+	signInAuthUserWithEmailAndPassword,
 } from '../../utils/firebase/firebase.utils'
 import Button from '../button/button.component'
 import './sign-in-form.styles.scss'
@@ -31,12 +32,18 @@ const SignInForm = () => {
 	const handleSubmit = async (event) => {
 		// tell Firebase that we will handle everything in the form
 		event.preventDefault()
-
+		console.log(password)
+		console.log(confirmPassword)
 		// confirm the password matches
 		if (password !== confirmPassword) {
 			alert('Passwords do not match!')
+			console.log(password)
+			console.log(confirmPassword)
 			return
 		}
+
+		console.log(password)
+		console.log(confirmPassword)
 		// check if user has been authenticated with email and password
 		try {
 			// grab email and password values that were destructured off formFields
@@ -45,6 +52,9 @@ const SignInForm = () => {
 			//verify we're getting user data from authorization
 			console.log(user)
 
+			const response = await signInAuthUserWithEmailAndPassword(email, password)
+
+			console.log(response)
 			//clear form after we submit credentials
 			clearFormFields()
 
@@ -103,7 +113,7 @@ const SignInForm = () => {
 					value={password}
 				/>
 
-				<div>
+				<div className="buttons-container">
 					<Button buttonType={'inverted'} type="submit">
 						Sign In
 					</Button>

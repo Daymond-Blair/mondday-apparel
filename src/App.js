@@ -2,11 +2,10 @@ import './components/categories/categories.styles.scss'
 import Home from './components/routes/home/home.component'
 import Navigation from './components/routes/navigation/navigation.component'
 import { Routes, Route } from 'react-router-dom'
-import SignIn from './components/sign-in/sign-in.component'
+import Shop from './components/shop/shop.component'
+import Authentication from './components/authentication/authentication.component'
 
-const Shop = () => {
-	return <h1>Here's the shop component</h1>
-}
+// this component is currently inside the app, lets modularize and make it an external component
 
 const App = () => {
 	return (
@@ -15,7 +14,7 @@ const App = () => {
 				<Route index element={<Home />} />
 				<Route path="shop" element={<Shop />} />
 				{/* Its breaking right here when I call SignIn component, investigate there */}
-				<Route path="sign-in" element={<SignIn />} />
+				<Route path="authentication" element={<Authentication />} />
 			</Route>
 		</Routes>
 	)
