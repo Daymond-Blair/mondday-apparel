@@ -14,7 +14,7 @@ const App = () => {
 				<Route index element={<Home />} />
 				<Route path="shop" element={<Shop />} />
 				{/* Its breaking right here when I call SignIn component, investigate there */}
-				<Route path="authentication" element={<Authentication />} />
+				<Route path="auth" element={<Authentication />} />
 			</Route>
 		</Routes>
 	)
