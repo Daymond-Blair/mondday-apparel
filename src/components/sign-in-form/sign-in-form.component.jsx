@@ -5,7 +5,6 @@ import {
 	createAuthUserWithEmailAndPassword,
 	createUserDocumentFromAuth,
 	signInAuthUserWithEmailAndPassword,
-	signInWithGooglePopup,
 } from '../../utils/firebase/firebase.utils'
 import Button from '../button/button.component'
 import './sign-in-form.styles.scss'
@@ -41,6 +40,10 @@ const SignInForm = () => {
 		event.preventDefault()
 		console.log(password)
 		console.log(confirmPassword)
+
+		try {
+			const response = await signInAuthUserWithEmailAndPassword(email, password)
+		} catch (error) {}
 		// confirm the password matches
 		if (password !== confirmPassword) {
 			alert('Passwords do not match!')
@@ -126,7 +129,7 @@ const SignInForm = () => {
 					</Button>
 
 					<Button buttonType={'google'} onClick={signInWithGoogle}>
-						Sign In With Google
+						Google Sign In
 					</Button>
 				</div>
 				{/* <button type="submit">Sign Up</button> */}

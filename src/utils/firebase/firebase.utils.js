@@ -84,5 +84,5 @@ export const signInAuthUserWithEmailAndPassword = async (email, password) => {
 	// if we don't get an argument passed in, don't run the function
 	if (!email || !password) return
 
-	return await signInAuthUserWithEmailAndPassword(auth, email, password)
+	return await signInWithEmailAndPassword(email, password)
 }
